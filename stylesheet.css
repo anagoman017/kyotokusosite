@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+html {
+    font-family: 'Noto Serif JP', serif;
+}
+
+
+header{
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(46, 46, 46, 0.7)}   
+
+body{
+    background-color: antiquewhite;
+    text-align: center;
+    
+}
+
