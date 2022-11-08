@@ -30,7 +30,12 @@ body{
 }
 
 .kyotoimg{
+    background: url(https://s3-ap-northeast-1.amazonaws.com/thegate/2021/06/15/10/44/58/Kyoto_World_Heritage_Title.jpg);
     width: 100%;
+}
+
+.logopic{
+  
 }
 
 /* チェックボックスを非表示にする */
@@ -59,7 +64,7 @@ body{
     height: 3px;
     width: 25px;
     border-radius: 3px;
-    background: #333;
+    background: #fff;
     transition: 0.5s;
     position: absolute;
   }
@@ -92,7 +97,7 @@ body{
     
   /* メニューのデザイン*/
   .nav_content {
-    width: 100%;
+    width: 25%;
     height: 100%;
     position: fixed;
     top: 0;
