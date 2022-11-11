@@ -12,7 +12,7 @@ html {
   background-image: url(https://www.kiyomizudera.or.jp/assets/img/event/night_ph_04.jpg);
   position: absolute;
   z-index: 1;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -37,13 +37,13 @@ html {
 }   
 
 body{
-    background-color: #000033;
+    background-color: #000333;
     text-align: center;
     
 }
 
 .about{
-    margin-top: 50%;
+    margin-top: 35%;
 }
 
 .restaurant, .event{
@@ -137,7 +137,7 @@ footer{
     top: 0;
     left: 100%; /* メニューを画面の外に飛ばす */
     z-index: 99;
-    background: gray;
+    background: #deb887;
     transition: .5s;
   }
   
