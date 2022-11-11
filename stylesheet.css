@@ -11,9 +11,9 @@ html {
 .kyotoimg{
   background-image: url(https://www.kiyomizudera.or.jp/assets/img/event/night_ph_04.jpg);
   position: absolute;
-  z-index: 1;
-  width: 100vw;
-  height: 100vw;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
 }
@@ -21,7 +21,7 @@ html {
 .logopic{
   margin-top: 120px;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .header{
@@ -30,7 +30,7 @@ html {
     align-items: center;
     color: #fff;
     position: fixed;
-    z-index: 3;
+    z-index: 4;
     top: 8px;
     left: 8px;
     width: 100%;
@@ -38,6 +38,7 @@ html {
 
 body{
     background-color: #000333;
+    z-index: 1;
     text-align: center;
     
 }
