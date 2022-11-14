@@ -25,11 +25,16 @@
   .box{
     color: #fff;
     padding: 40px;
-    display:flex;
+    /* display:flex; */
     justify-content: center;
     align-items: center;
     text-align: center;
   }
+
+  .description{
+
+ }
+
   #box1{
       background: #333;
       width: 100%;
