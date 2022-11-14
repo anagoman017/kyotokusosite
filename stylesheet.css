@@ -1,90 +1,26 @@
 @charset "UTF-8";
 
-/* 
-
-html {
-    font-family: 'Noto Serif JP', serif;
-    color: #1b2e41;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-
-}
-
-.kyotoimg{
-  background-image: url(https://www.kiyomizudera.or.jp/assets/img/event/night_ph_04.jpg);
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
-
-.logopic{
-  margin-top: 120px;
-  position: relative;
-  z-index: 3;
-}
-
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    position: fixed;
-    z-index: 4;
-    top: 8px;
-    left: 8px;
-    width: 100%;
-}   
-
-body{
-    background-color:#dcd6d2;
-    z-index: 1;
-    text-align: center;
-    
-}
-
-.about{
-    margin-top: 60%;
-}
-
-.restaurant, .event{
-    margin-top: 20%;
-}
-
-
-footer{
-    margin-top: 20%;
-    position: fixe;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30px;
-}
-
-#about{
-  font-size: 22px;
-
-}
-
-#header{
-    font-size: 15px;
-}
-
- */
-
  *{
   font-family: 'Noto Serif JP', serif;
  }
   
+ body {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;               /* 全画面 */
+  background-attachment: fixed;         /* 固定 */
+  background-position: center center;   /* 縦横中央 */
+}
+
   #header{
     padding: 10px;
     background:#666;
       color: #fff;
     text-align: center;
   }
+
+ 
+
   
   .box{
     color: #fff;
@@ -96,9 +32,10 @@ footer{
   }
   #box1{
       background: #333;
-      /* background-image: url(https://www.kiyomizudera.or.jp/assets/img/event/night_ph_04.jpg); */
       width: 100%;
       height: auto;
+      padding: 0;
+    
     } 
   #box2{
       background: #666;
@@ -146,12 +83,32 @@ footer{
   }
 
 
-  /*京都ロゴアニメーション*/
+  /*京都ロゴ*/
   .logopic {
-    animation: fadein 3s ease-out forwards;
+    padding-top: 150px;
+    animation: fadein 5s ease-out forwards;
   }
   
   @keyframes fadein {
     0% {opacity: 0}
     100% {opacity: 1}
+  }
+
+
+
+  .background {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-image: url(https://fts-prod-contents-bucket-tky.s3.ap-northeast-1.amazonaws.com/fts/content/images/e7031e77-5d22-48a1-8b49-feaff7c458de.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+   
+  .filter {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
   }
