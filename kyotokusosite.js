@@ -1,3 +1,4 @@
+//ページスクロール
 $.scrollify({
     section : ".box",//1ページスクロールさせたいエリアクラス名
     scrollbars:"false",//スクロールバー表示・非表示設定
@@ -28,3 +29,4 @@ $.scrollify({
       }
   
     });
+

@@ -13,7 +13,7 @@
 }
 
   #header{
-    padding: 10px;
+    padding: 2px;
     background:#666;
       color: #fff;
     text-align: center;
@@ -25,28 +25,40 @@
   .box{
     color: #fff;
     padding: 40px;
-    /* display:flex; */
+    display:flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    mix-blend-mode: color;
   }
 
-  .description{
 
- }
+  
 
   #box1{
-      background: #333;
+      background: #666;
       width: 100%;
       height: auto;
       padding: 0;
     
     } 
   #box2{
-      background: #666;
-  }
-  #box3{
       background: #888;
+      
+
+  }
+
+  .description{
+    width: 70%;
+  
+  }
+
+  #box3{
+      background: #fff;
+      color: #000;
+      writing-mode: vertical-rl;
+
+      
   }
   #box4{
       background: #000;
@@ -117,3 +129,5 @@
     position: absolute;
     background-color: rgba(0,0,0,0.5);
   }
+
+ 
