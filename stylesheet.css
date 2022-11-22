@@ -1,240 +1,498 @@
 @charset "UTF-8";
 
- *{
+* {
   font-family: 'Noto Serif JP', serif;
- }
-  
- body {
-  width: 100%;
-  height: 100vh;
-  background-size: cover;               /* 全画面 */
-  background-attachment: fixed;         /* 固定 */
-  background-position: center center;   /* 縦横中央 */
 }
 
-  /* #header{
-    padding: 2px;
-    background:#666;
-      color: #fff;
-    text-align: center;
-  } */
+/* =================ハンバーガーメニュー=============== */
+#g-nav {
+  /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+  position: fixed;
+  z-index: 999;
+  /*ナビのスタート位置と形状*/
+  top: 0;
+  right: -120%;
+  width: 100%;
+  height: 100vh;
+  /*ナビの高さ*/
+  background: #999;
+  /*動き*/
+  transition: all 0.6s;
+}
 
-  .logo_fadein{
-    background: #FFF;
-    position: fixed;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 999;
-  }
-  .logo_fadein p {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-    z-index: 9999;
-   
-  }
+/*アクティブクラスがついたら位置を0に*/
+#g-nav.panelactive {
+  right: 0;
+}
 
-  
-  .box{
-    color: #fff;
-    padding: 40px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    mix-blend-mode: color;
-  }
+/*ナビゲーションの縦スクロール*/
+#g-nav.panelactive #g-nav-list {
+  /*ナビの数が増えた場合縦スクロール*/
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100vh;
+  /*表示する高さ*/
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
-  #box1{
-      background: #666;
-      width: 100%;
-      height: auto;
-      padding: 0;
-    
-    } 
+/*ナビゲーション*/
+#g-nav ul {
+  /*ナビゲーション天地中央揃え*/
+  position: absolute;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  /* #mainlogo{
-      margin: 0;
-      
-  }   */
+/*リストのレイアウト設定*/
 
-  #box2{
-      background: #888;
-      
+#g-nav li {
+  list-style: none;
+  text-align: center;
+}
 
-  }
+#g-nav li a {
+  color: #333;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+}
 
-  .description{
-    width: 70%;
-  
-  }
+/*========= ボタンのためのCSS ===============*/
+.openbtn {
+  position: fixed;
+  z-index: 9999;
+  /*ボタンを最前面に*/
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+}
 
-  #box3{
-      background: #fff;
-      color: #000;
-      
-  }
+/*×に変化*/
+.openbtn span {
+  display: inline-block;
+  transition: all .4s;
+  position: absolute;
+  left: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: #333;
+  width: 45%;
+}
 
-  .loop_wrap {
-    display: flex;
-    width: 100vw;
-    height: 300px;
-    overflow: hidden;
-  }
-  
-  .loop_wrap img {
-    width: auto;
-    height: 100%;
-  }
+.openbtn span:nth-of-type(1) {
+  top: 15px;
+}
 
-  @keyframes loop {
-    0% {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(-100%);
-    }
-  }
-  
-  @keyframes loop2 {
-    0% {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-200%);
-    }
-  }
+.openbtn span:nth-of-type(2) {
+  top: 23px;
+}
 
-  #box4{
-      background: #000;
-  }
-  
-  #footer{
-    background:#333;
-    color:#fff;
-    padding:20px;
-    text-align:center;
-  }
-  
-  #footer a{
-    color: #fff;
-  }
-  /*========= ページネーションCSS ===============*/
-  
-  .pagination {
-    position:fixed;
-    right:20px;
-    top: 50%;
-      transform: translateY(-50%);
-    font-size:1em;
-    z-index: 10;
-    list-style: none;
-  }
-  
-  .pagination a {
-    display:block;
-    height:20px;
-    margin-bottom:5px;
-    color:#fff;
-    position:relative;
-    padding:4px;
-  }
-  
-  .pagination a.active:after {
-    box-shadow:inset 0 0 0 5px;
-  }
+.openbtn span:nth-of-type(3) {
+  top: 31px;
+}
 
-    /*768px以下は現在地表示のテキストを非表示*/
-  @media screen and (max-width:768px) { 
-    .pagination a .hover-text{
-      display: none;
-    } 
-  }
+.openbtn.active span:nth-of-type(1) {
+  top: 18px;
+  left: 18px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 30%;
+}
+
+.openbtn.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.openbtn.active span:nth-of-type(3) {
+  top: 30px;
+  left: 18px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 30%;
+}
 
 
-  /*京都ロゴ*/
-  .logopic {
-    padding-top: 150px;
-    animation: fadein 5s ease-out forwards;
-  }
-  
-  @keyframes fadein {
-    0% {opacity: 0}
-    100% {opacity: 1}
-  }
+body {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  /* 全画面 */
+  background-attachment: fixed;
+  /* 固定 */
+  background-position: center center;
+  /* 縦横中央 */
+}
+
+/* ==================京都ロゴ=================== */
+
+.logo_fadein {
+  background: #FFF;
+  position: fixed;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+}
+
+.logo_fadein p {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 9999;
+
+}
 
 
 
-  .background {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+.logopic {
+  padding-top: 150px;
+  animation: fadein 5s ease-out forwards;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0
   }
 
-  .slide {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  100% {
+    opacity: 1
   }
+}
 
-  .slide-image {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+
+/* ==================背景スライドショー=================== */
+.background {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slide-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: slider-1 24s linear infinite;
+}
+
+.slide-image:nth-child(1) {
+  background-image: url(https://fts-prod-contents-bucket-tky.s3.ap-northeast-1.amazonaws.com/fts/content/images/e7031e77-5d22-48a1-8b49-feaff7c458de.jpg);
+  animation-delay: -2s;
+}
+
+.slide-image:nth-child(2) {
+  background-image: url(https://64.media.tumblr.com/2cea2910cb0e028526355ccbe4156d9e/tumblr_n7mpoqOpK61t4k8xoo1_1280.jpg);
+  animation-delay: 6s;
+}
+
+.slide-image:nth-child(3) {
+  background-image: url(https://s3-ap-northeast-1.amazonaws.com/thegate/2022/03/24/13/11/11/Kiyomizudera_Temple_Lightup_Hondo.jpeg);
+  animation-delay: 14s;
+}
+
+@keyframes slider-1 {
+
+  /* 非表示状態からフェードインを開始する */
+  0% {
     opacity: 0;
-    animation: slider-1 24s linear infinite;
+    transform: scale(1);
+    /* ズームのための指定 */
   }
 
-  .slide-image:nth-child(1) {
-    background-image: url(https://fts-prod-contents-bucket-tky.s3.ap-northeast-1.amazonaws.com/fts/content/images/e7031e77-5d22-48a1-8b49-feaff7c458de.jpg);
-    animation-delay: -2s;
-  }
-  
-  .slide-image:nth-child(2) {
-    background-image: url(https://i.pinimg.com/originals/1a/e0/01/1ae0014c03b2c3d9cde5a027f64abae6.jpg);
-    animation-delay: 6s;
-  }
-  
-  .slide-image:nth-child(3) {
-    background-image: url(https://s3-ap-northeast-1.amazonaws.com/thegate/2022/03/24/13/11/11/Kiyomizudera_Temple_Lightup_Hondo.jpeg);
-    animation-delay: 14s;
+  /* フェードインを完了し完全表示する */
+  4.16% {
+    opacity: 1;
   }
 
-  @keyframes slider-1 {
-    /* 非表示状態からフェードインを開始する */
-    0% {
-      opacity: 0;
-      transform: scale(1); /* ズームのための指定 */
-    }
-    /* フェードインを完了し完全表示する */
-    4.16% {
-      opacity: 1;
-    }
-    /* ここまで完全表示を維持したらフェードアウトを開始する */
-    33.33% {
-      opacity: 1;
-    }
-    /* フェードアウトを完了し非表示にする */
-    41.66% {
-      opacity: 0;
-      transform: scale(1.2); /* ズームのための指定 */
-    }
-    100% {
-      opacity: 0;
-    }
+  /* ここまで完全表示を維持したらフェードアウトを開始する */
+  33.33% {
+    opacity: 1;
   }
-   
 
- 
+  /* フェードアウトを完了し非表示にする */
+  41.66% {
+    opacity: 0;
+    transform: scale(1.2);
+    /* ズームのための指定 */
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* ==================各エリアのレイアウト=================== */
+
+.box {
+  color: #f8f8ff;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  mix-blend-mode: color;
+}
+
+#box1 {
+  background: #eee;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  flex-direction: row-reverse;
+}
+
+#box2 {
+  background: #f8f8ff;
+  color: #000;
+
+}
+
+.description {
+  width: 70%;
+
+}
+
+#box3 {
+  background: #fff;
+  color: #000;
+
+}
+
+
+
+#box4 {
+  background: #f8f8ff;
+}
+
+#footer {
+  background: #333;
+  color: #fff;
+  padding: 40px;
+  text-align: center;
+}
+
+#footer a {
+  color: #fff;
+}
+
+
+/* ==================スクロールダウン=================== */
+
+.scrolldown2 {
+  /*描画位置※位置は適宜調整してください*/
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+}
+
+/*Scrollテキストの描写*/
+.scrolldown2 span {
+  /*縦書き設定*/
+  -ms-writing-mode: tb-rl;
+  -webkit-writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
+}
+
+/* 丸の描写 */
+.scrolldown2:before {
+  content: "";
+  /*描画位置*/
+  position: absolute;
+  bottom: 0;
+  left: -4px;
+  /*丸の形状*/
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #eee;
+  /*丸の動き1.6秒かけて透過し、永遠にループ*/
+  animation:
+    circlemove 1.6s ease-in-out infinite,
+    cirlemovehide 1.6s ease-out infinite;
+}
+
+/*下からの距離が変化して丸の全体が上から下に動く*/
+@keyframes circlemove {
+  0% {
+    bottom: 45px;
+  }
+
+  100% {
+    bottom: -5px;
+  }
+}
+
+/*上から下にかけて丸が透過→不透明→透過する*/
+@keyframes cirlemovehide {
+  0% {
+    opacity: 0
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 線の描写 */
+.scrolldown2:after {
+  content: "";
+  /*描画位置*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /*線の形状*/
+  width: 2px;
+  height: 50px;
+  background: #eee;
+}
+
+
+
+
+/*========= ページネーションCSS ===============*/
+
+.pagination {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1em;
+  z-index: 10;
+  list-style: none;
+}
+
+.pagination a {
+  display: block;
+  height: 20px;
+  margin-bottom: 5px;
+  color: #fff;
+  position: relative;
+  padding: 4px;
+}
+
+.pagination a.active:after {
+  box-shadow: inset 0 0 0 5px;
+}
+
+/*768px以下は現在地表示のテキストを非表示*/
+@media screen and (max-width:768px) {
+  .pagination a .hover-text {
+    display: none;
+  }
+}
+
+/*==================================================
+スライダーのためのcss
+===================================*/
+.slider {
+  /*横幅94%で左右に余白を持たせて中央寄せ*/
+  width: 94%;
+  margin: 0 auto;
+}
+
+.slider img {
+  width: 100%;
+  /*スライダー内の画像を横幅100%に*/
+  height: auto;
+}
+
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+
+.slider .slick-slide {
+  margin: 0 10px;
+}
+
+/*矢印の設定*/
+
+/*戻る、次へ矢印の位置*/
+.slick-prev,
+.slick-next {
+  position: absolute;
+  /*絶対配置にする*/
+  top: 42%;
+  cursor: pointer;
+  /*マウスカーソルを指マークに*/
+  outline: none;
+  /*クリックをしたら出てくる枠線を消す*/
+  border-top: 2px solid #666;
+  /*矢印の色*/
+  border-right: 2px solid #666;
+  /*矢印の色*/
+  height: 15px;
+  width: 15px;
+}
+
+.slick-prev {
+  /*戻る矢印の位置と形状*/
+  left: -1.5%;
+  transform: rotate(-135deg);
+}
+
+.slick-next {
+  /*次へ矢印の位置と形状*/
+  right: -1.5%;
+  transform: rotate(45deg);
+}
+
+/*ドットナビゲーションの設定*/
+
+.slick-dots {
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+
+.slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slick-dots button {
+  color: transparent;
+  outline: none;
+  width: 8px;
+  /*ドットボタンのサイズ*/
+  height: 8px;
+  /*ドットボタンのサイズ*/
+  display: block;
+  border-radius: 50%;
+  background: #ccc;
+  /*ドットボタンの色*/
+}
+
+.slick-dots .slick-active button {
+  background: #333;
+  /*ドットボタンの現在地表示の色*/
+}
